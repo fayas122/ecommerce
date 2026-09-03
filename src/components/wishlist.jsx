@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import {toast} from "react-hot-toast";
 import {
   removeFromWishlist,
   clearWishlist,
@@ -66,6 +66,7 @@ function Wishlist() {
       );
 
     }
+    toast.success("Product removed from wishlist")
   };
 
 
@@ -97,6 +98,7 @@ function Wishlist() {
       );
 
     }
+    toast.success("wishlist cleared successfully")
   };
 
 

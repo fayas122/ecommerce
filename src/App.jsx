@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadWishlist } from "./features/wishlist/wishlistSlice";
 import { getUserById } from "./services/userApi";
 import { loadCart } from "./features/cart/cartSlice";
+import { Toaster } from "react-hot-toast"
 
 function App() {
   const dispatch = useDispatch();
@@ -77,7 +78,9 @@ function App() {
   }, [user?.id, dispatch]);
 
   return (
-    <Routes>
+    <>
+        <Routes>
+
       {/* User Routes */}
       <Route path="/" element={<Home />} />
 
@@ -136,6 +139,10 @@ function App() {
       {/* 404 */}
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
     </Routes>
+
+    <toaster position="top-right" />
+    </>
+    
   );
 }
 

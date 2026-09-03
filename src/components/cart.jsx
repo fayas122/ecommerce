@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-hot-toast"
 
 import {
   increaseQuantity,
@@ -262,6 +263,7 @@ function Cart() {
 
     // Address already exists
     placeOrder(currentUser);
+    toast.success("Order placed successfully!");
   };
 
   // =========================

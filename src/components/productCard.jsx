@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Heart, ShoppingCart } from "lucide-react";
+import {toast} from "react-hot-toast";
 
 import { addToCart } from "../features/cart/cartSlice";
 
@@ -63,7 +64,7 @@ function ProductCard({ product }) {
   }
 
   if (!user?.id) {
-    alert("User information not found");
+    toast.error("User information not found");
     return;
   }
 
@@ -101,11 +102,11 @@ function ProductCard({ product }) {
       addToCart(product)
     );
 
-    alert("Product added to cart");
+    toast.success("Product added to cart");
   } catch (error) {
     console.error("Cart update failed:", error);
 
-    alert("Failed to update cart");
+    toast.error("Failed to update cart");
   }
 };
 
@@ -150,7 +151,7 @@ function ProductCard({ product }) {
           updatedWishlist
         );
 
-        alert("Product removed from wishlist");
+        toast.success("Product removed from wishlist");
       }
 
       // ==========================================
@@ -175,7 +176,7 @@ function ProductCard({ product }) {
           updatedWishlist
         );
 
-        alert("Product added to wishlist");
+        toast.success("Product added to wishlist");
       }
 
     } catch (error) {
@@ -185,7 +186,7 @@ function ProductCard({ product }) {
         error
       );
 
-      alert(
+      toast.error(
         "Failed to update wishlist"
       );
     }
