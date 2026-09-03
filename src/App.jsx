@@ -7,18 +7,20 @@ import ProductDetails from "./pages/user/productDetails";
 import Cart from "./components/cart";
 import Wishlist from "./components/wishlist";
 import MyAccount from "./pages/user/myAccount";
+import Orders from "./components/orders";
 
 // Auth pages
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
 import ProtectedRoute from "./components/protectedRoute";
 import AuthProtectedRoute from "./components/authprotectedroute";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { loadWishlist } from "./features/wishlist/wishlistSlice";
 import { getUserById } from "./services/userApi";
-import {loadCart } from "./features/cart/cartSlice"
+import { loadCart } from "./features/cart/cartSlice";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -110,6 +112,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/myAccount/orders" element={<Orders />} />
 
       {/* Auth Routes */}
       <Route

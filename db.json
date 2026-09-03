@@ -278,16 +278,27 @@
       "password": "fayas123",
       "wishlist": [
         {
+          "id": "1",
+          "title": "Handcrafted Bamboo Vase",
+          "price": 1800,
+          "category": "Home & Decor",
+          "image": "/images/Handcrafted Bamboo Vase.jpg",
+          "description": "Handcrafted bamboo vase with a natural woven finish.",
+          "stock": 12
+        }
+      ],
+      "cart": [
+        {
           "id": "2",
           "title": "Rattan Bamboo Vase",
           "price": 2200,
           "category": "Home & Decor",
           "image": "/images/Rattan Bamboo Vase.jpg",
           "description": "Decorative rattan bamboo vase designed for natural home interiors.",
-          "stock": 8
+          "stock": 8,
+          "quantity": 1
         }
       ],
-      "cart": [],
       "orders": [
         {
           "id": "order-1788343969189",
