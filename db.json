@@ -278,16 +278,27 @@
       "password": "fayas123",
       "wishlist": [
         {
-          "id": "4",
-          "title": "Woven Bamboo Basket",
-          "price": 1400,
-          "category": "Storage",
-          "image": "/images/Bamboo Woven cap.jpg",
-          "description": "Handwoven bamboo basket for stylish household storage.",
-          "stock": 15
+          "id": "2",
+          "title": "Rattan Bamboo Vase",
+          "price": 2200,
+          "category": "Home & Decor",
+          "image": "/images/Rattan Bamboo Vase.jpg",
+          "description": "Decorative rattan bamboo vase designed for natural home interiors.",
+          "stock": 8
         }
       ],
-      "cart": [],
+      "cart": [
+        {
+          "id": "2",
+          "title": "Rattan Bamboo Vase",
+          "price": 2200,
+          "category": "Home & Decor",
+          "image": "/images/Rattan Bamboo Vase.jpg",
+          "description": "Decorative rattan bamboo vase designed for natural home interiors.",
+          "stock": 8,
+          "quantity": 1
+        }
+      ],
       "orders": [
         {
           "id": "order-1788343969189",

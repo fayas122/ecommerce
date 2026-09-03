@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { updateUserAddress } from "../services/userApi";
+import toast from "react-hot-toast";
 
 const AddressForm = ({ user, onSaved }) => {
   const [formData, setFormData] = useState({
@@ -33,10 +34,11 @@ const AddressForm = ({ user, onSaved }) => {
       onSaved(updatedUser);
     } catch (error) {
       console.error("Failed to save address:", error);
-      alert("Failed to save address");
+      toast.error("Failed to save address");
     } finally {
       setLoading(false);
     }
+    toast.success("Address saved successfully!")
   };
 
   return (

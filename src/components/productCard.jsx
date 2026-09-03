@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Heart, ShoppingCart } from "lucide-react";
-import {toast} from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import { addToCart } from "../features/cart/cartSlice";
 
@@ -12,14 +12,10 @@ import {
 
 import {
   updateUserWishlist,
-} from "../services/userApi";
-
-import {
   updateUserCart,
 } from "../services/userApi";
 
 function ProductCard({ product }) {
-
   // ================= AUTH =================
 
   const { isAuthenticated, user } = useSelector(
@@ -56,59 +52,58 @@ function ProductCard({ product }) {
   // ================= ADD TO CART =================
 
   const handleAddToCart = async (e) => {
-  e.stopPropagation();
+    e.stopPropagation();
 
-  if (!isAuthenticated) {
-    navigate("/login");
-    return;
-  }
-
-  if (!user?.id) {
-    toast.error("User information not found");
-    return;
-  }
-
-  try {
-    const existingItem = cartItems.find(
-      (item) => item.id === product.id
-    );
-
-    let updatedCart;
-
-    if (existingItem) {
-      updatedCart = cartItems.map((item) =>
-        item.id === product.id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item
-      );
-    } else {
-      updatedCart = [
-        ...cartItems,
-        {
-          ...product,
-          quantity: 1,
-        },
-      ];
+    if (!isAuthenticated) {
+      toast.error("Please login to add products to cart");
+      navigate("/login");
+      return;
     }
 
-    // First save to db.json
-    await updateUserCart(user.id, updatedCart);
+    if (!user?.id) {
+      toast.error("User information not found");
+      return;
+    }
 
-    // Then update Redux
-    dispatch(
-      addToCart(product)
-    );
+    try {
+      const existingItem = cartItems.find(
+        (item) => item.id === product.id
+      );
 
-    toast.success("Product added to cart");
-  } catch (error) {
-    console.error("Cart update failed:", error);
+      let updatedCart;
 
-    toast.error("Failed to update cart");
-  }
-};
+      if (existingItem) {
+        updatedCart = cartItems.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+            : item
+        );
+      } else {
+        updatedCart = [
+          ...cartItems,
+          {
+            ...product,
+            quantity: 1,
+          },
+        ];
+      }
+
+      // Save to db.json
+      await updateUserCart(user.id, updatedCart);
+
+      // Update Redux
+      dispatch(addToCart(product));
+
+      toast.success("Product added to cart");
+    } catch (error) {
+      console.error("Cart update failed:", error);
+
+      toast.error("Failed to update cart");
+    }
+  };
 
   // ================= WISHLIST =================
 
@@ -117,13 +112,14 @@ function ProductCard({ product }) {
 
     // User not logged in
     if (!isAuthenticated) {
+      toast.error("Please login to manage your wishlist");
       navigate("/login");
       return;
     }
 
     // Make sure user exists
     if (!user?.id) {
-      alert("User information not found");
+      toast.error("User information not found");
       return;
     }
 
@@ -135,15 +131,12 @@ function ProductCard({ product }) {
       // ==========================================
 
       if (isWishlisted) {
-
         updatedWishlist = wishlistItems.filter(
           (item) => item.id !== product.id
         );
 
         // Update Redux
-        dispatch(
-          removeFromWishlist(product.id)
-        );
+        dispatch(removeFromWishlist(product.id));
 
         // Update db.json
         await updateUserWishlist(
@@ -159,16 +152,13 @@ function ProductCard({ product }) {
       // ==========================================
 
       else {
-
         updatedWishlist = [
           ...wishlistItems,
           product,
         ];
 
         // Update Redux
-        dispatch(
-          addToWishlist(product)
-        );
+        dispatch(addToWishlist(product));
 
         // Update db.json
         await updateUserWishlist(
@@ -178,17 +168,13 @@ function ProductCard({ product }) {
 
         toast.success("Product added to wishlist");
       }
-
     } catch (error) {
-
       console.error(
         "Wishlist update failed:",
         error
       );
 
-      toast.error(
-        "Failed to update wishlist"
-      );
+      toast.error("Failed to update wishlist");
     }
   };
 
@@ -205,11 +191,9 @@ function ProductCard({ product }) {
         hover:shadow-lg
       "
     >
-
       {/* ================= PRODUCT IMAGE ================= */}
 
       <div className="relative aspect-square overflow-hidden bg-[#e9e2d5]">
-
         <img
           src={product.image}
           alt={product.title}
@@ -254,24 +238,17 @@ function ProductCard({ product }) {
             hover:bg-black/20
           "
         >
-
           <Heart
             size={19}
             strokeWidth={1.6}
-            fill={
-              isWishlisted
-                ? "white"
-                : "none"
-            }
+            fill={isWishlisted ? "white" : "none"}
             className="
               transition-transform
               duration-300
               hover:scale-110
             "
           />
-
         </button>
-
       </div>
 
       {/* ================= PRODUCT DETAILS ================= */}
@@ -296,7 +273,6 @@ function ProductCard({ product }) {
         {/* ================= RATING ================= */}
 
         <div className="mt-2 flex items-center gap-1">
-
           <div
             className="
               flex
@@ -311,16 +287,13 @@ function ProductCard({ product }) {
           <span className="text-[9px] text-[#777]">
             ({product.reviews || 128})
           </span>
-
         </div>
 
         {/* ================= PRICE ================= */}
 
         <p className="mt-1 text-sm font-semibold text-[#333]">
           ₹
-          {Number(product.price).toLocaleString(
-            "en-IN"
-          )}
+          {Number(product.price).toLocaleString("en-IN")}
         </p>
 
         {/* ================= ADD TO CART ================= */}
@@ -346,7 +319,6 @@ function ProductCard({ product }) {
             disabled:bg-gray-400
           "
         >
-
           <ShoppingCart
             size={13}
             strokeWidth={1.5}
@@ -355,11 +327,8 @@ function ProductCard({ product }) {
           {product.stock === 0
             ? "Out of Stock"
             : "Add to Cart"}
-
         </button>
-
       </div>
-
     </div>
   );
 }

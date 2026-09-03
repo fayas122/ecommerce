@@ -466,7 +466,6 @@ function Products() {
     </div>
   );
 }
-<ProductCard/>
 
 
 export default Products;

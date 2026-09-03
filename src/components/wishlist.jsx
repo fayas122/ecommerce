@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {toast} from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
   removeFromWishlist,
   clearWishlist,
