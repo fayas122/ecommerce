@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { clearCart } from "../../features/cart/cartSlice";
+import { clearWishlist } from "../../features/wishlist/wishlistSlice";
 
 import {
   ShoppingBag,
@@ -43,8 +45,10 @@ function MyAccount() {
   // ================= LOGOUT =================
 
   const handleLogout = () => {
-    dispatch(logout());
-  };
+  dispatch(clearCart());
+  dispatch(clearWishlist());
+  dispatch(logout());
+};
 
   // ================= REAL COUNTS =================
 
@@ -193,7 +197,7 @@ function MyAccount() {
 
           {/* Logout */}
 
-          <div className="flex justify-center  max-h-[50px]">
+          <div className="flex justify-center max-h-[50px]">
             <button
               onClick={handleLogout}
               className="group flex items-center gap-2.5 rounded-full border border-[#dfe3d8] bg-white px-5 py-2.5 text-sm font-medium text-[#37422d] shadow-sm transition-all duration-300 hover:border-[#c9d5bf] hover:bg-[#f3f6ef] hover:shadow-md"
