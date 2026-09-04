@@ -189,7 +189,7 @@ function Products() {
           FIXED LEFT SIDEBAR
       ========================== */}
 
-      <aside className="fixed left-0 top-0 h-screen w-[220px] overflow-y-auto border-r border-stone-200 bg-[#faf9f5]">
+      <aside data-aos="fade-right" className="fixed left-0 top-0 h-screen w-[220px] overflow-y-auto border-r border-stone-200 bg-[#faf9f5]">
         {/* Title */}
 
         <div className="px-6 pb-7 pt-5">
@@ -320,7 +320,7 @@ function Products() {
           RIGHT PRODUCTS SECTION
       ========================== */}
 
-      <main className="ml-[220px] min-h-screen bg-[#f8f7f3] px-6 py-5">
+      <main data-aos="fade-left" className="ml-[220px] min-h-screen bg-[#f8f7f3] px-6 py-5">
         {/* =========================
             BREADCRUMB
         ========================== */}

@@ -92,7 +92,7 @@ function Navbar() {
           </div>
 
           <span className="font-serif text-[19px] tracking-[1.5px] text-white">
-            BAMBOORA
+            WESTEROS
           </span>
         </Link>
 

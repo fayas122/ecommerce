@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadWishlist } from "./features/wishlist/wishlistSlice";
 import { getUserById } from "./services/userApi";
 import { loadCart } from "./features/cart/cartSlice";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,9 +42,7 @@ function App() {
     };
 
     loadUserCart();
-  
 
-  
     const fetchCart = async () => {
       if (!user?.id) {
         return;
@@ -76,71 +76,75 @@ function App() {
     fetchWishlist();
   }, [user?.id, dispatch]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+      once: true,
+    });
+  }, []);
+
   return (
     <>
-        <Routes>
+      <Routes>
+        {/* User Routes */}
+        <Route path="/" element={<Home />} />
 
-      {/* User Routes */}
-      <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
 
-      <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
 
-      <Route path="/products/:id" element={<ProductDetails />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/cart"
-        element={
-          <ProtectedRoute>
-            <Cart />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/wishlist"
-        element={
-          <ProtectedRoute>
-            <Wishlist />
-          </ProtectedRoute>
-        }
-      />
+        {/* My Account */}
+        <Route
+          path="/myAccount"
+          element={
+            <ProtectedRoute>
+              <MyAccount />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/myAccount/orders" element={<Orders />} />
 
-      {/* My Account */}
-      <Route
-        path="/myAccount"
-        element={
-          <ProtectedRoute>
-            <MyAccount />
-          </ProtectedRoute>
-        }
-      />
-      <Route path="/myAccount/orders" element={<Orders />} />
+        {/* Auth Routes */}
+        <Route
+          path="/login"
+          element={
+            <AuthProtectedRoute>
+              <Login />
+            </AuthProtectedRoute>
+          }
+        />
 
-      {/* Auth Routes */}
-      <Route
-        path="/login"
-        element={
-          <AuthProtectedRoute>
-            <Login />
-          </AuthProtectedRoute>
-        }
-      />
+        <Route
+          path="/register"
+          element={
+            <AuthProtectedRoute>
+              <Register />
+            </AuthProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/register"
-        element={
-          <AuthProtectedRoute>
-            <Register />
-          </AuthProtectedRoute>
-        }
-      />
-
-      {/* 404 */}
-      <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-    </Routes>
-
+        {/* 404 */}
+        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+      </Routes>
     </>
-    
   );
 }
 

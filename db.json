@@ -285,17 +285,26 @@
           "image": "/images/Rattan Bamboo Vase.jpg",
           "description": "Decorative rattan bamboo vase designed for natural home interiors.",
           "stock": 8
+        },
+        {
+          "id": "4",
+          "title": "Woven Bamboo Basket",
+          "price": 1400,
+          "category": "Storage",
+          "image": "/images/Bamboo Woven cap.jpg",
+          "description": "Handwoven bamboo basket for stylish household storage.",
+          "stock": 15
         }
       ],
       "cart": [
         {
-          "id": "2",
-          "title": "Rattan Bamboo Vase",
-          "price": 2200,
-          "category": "Home & Decor",
-          "image": "/images/Rattan Bamboo Vase.jpg",
-          "description": "Decorative rattan bamboo vase designed for natural home interiors.",
-          "stock": 8,
+          "id": "4",
+          "title": "Woven Bamboo Basket",
+          "price": 1400,
+          "category": "Storage",
+          "image": "/images/Bamboo Woven cap.jpg",
+          "description": "Handwoven bamboo basket for stylish household storage.",
+          "stock": 15,
           "quantity": 1
         }
       ],
@@ -355,6 +364,62 @@
           "totalAmount": 1400,
           "status": "Processing",
           "createdAt": "2026-09-03T04:39:54.246Z"
+        },
+        {
+          "id": "order-1788494516397",
+          "customer": {
+            "name": "muhammed fayas ",
+            "email": "fayas122@gmail.com"
+          },
+          "address": {
+            "fullName": "muhammed fayas ",
+            "addressLine": "rp house, chelari",
+            "city": "chelari",
+            "state": "kerala",
+            "pincode": "636717"
+          },
+          "items": [
+            {
+              "id": "2",
+              "title": "Rattan Bamboo Vase",
+              "price": 2200,
+              "quantity": 2,
+              "image": "/images/Rattan Bamboo Vase.jpg"
+            }
+          ],
+          "subtotal": 4400,
+          "shipping": 0,
+          "totalAmount": 4400,
+          "status": "Processing",
+          "createdAt": "2026-09-04T04:01:56.391Z"
+        },
+        {
+          "id": "order-1788494549692",
+          "customer": {
+            "name": "muhammed fayas ",
+            "email": "fayas122@gmail.com"
+          },
+          "address": {
+            "fullName": "muhammed fayas ",
+            "addressLine": "rp house, chelari",
+            "city": "chelari",
+            "state": "kerala",
+            "pincode": "636717"
+          },
+          "items": [
+            {
+              "id": "3",
+              "title": "Bamboo Coaster Set",
+              "price": 650,
+              "quantity": 1,
+              "image": "/images/Bamboo Coaster Set.jpg"
+            }
+          ],
+          "subtotal": 650,
+          "shipping": 0,
+          "totalAmount": 650,
+          "status": "Processing",
+          "createdAt": "2026-09-04T04:02:29.687Z"
         }
       ],
       "id": "eYCz5cqLkqc",

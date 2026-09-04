@@ -30,15 +30,13 @@ function Home() {
 
   const productsPerSlide = 4;
 
-  const totalSlides = Math.ceil(
-    featuredProducts.length / productsPerSlide
-  );
+  const totalSlides = 3;
 
   const startIndex = currentSlide * productsPerSlide;
 
   const currentProducts = featuredProducts.slice(
     startIndex,
-    startIndex + productsPerSlide
+    startIndex + productsPerSlide,
   );
 
   if (isLoading) {
@@ -48,9 +46,6 @@ function Home() {
   if (isError) {
     return <h1>Failed to load products</h1>;
   }
-
- 
-
 
   return (
     <main className="w-full overflow-x-hidden">
@@ -69,12 +64,18 @@ function Home() {
         </div>
 
         {/* ================= NAVBAR ================= */}
-        <div className="absolute left-0 top-0 z-50 w-full">
+        <div
+          data-aos="fade-down"
+          className="absolute fixed left-0 top-0 z-50 w-full"
+        >
           <Navbar />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-8 lg:px-12">
+        <div
+          data-aos="fade-right"
+          className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-8 lg:px-12"
+        >
           <div className="max-w-[440px] pt-12 mt-12">
             <h1 className="font-serif text-5xl leading-[1.05] text-[#111] md:text-6xl">
               Crafted by Nature.
@@ -103,7 +104,10 @@ function Home() {
         </div>
 
         {/* Features Card */}
-        <div className="absolute bottom-0 left-1/2 z-50 w-[86%] max-w-[800px] -translate-x-1/2 translate-y-1/2">
+        <div
+          data-aos="fade-up"
+          className="absolute bottom-0 left-1/2 z-50 w-[86%] max-w-[800px] -translate-x-1/2 translate-y-1/2"
+        >
           {" "}
           <div className="grid grid-cols-2 overflow-hidden rounded-[14px] bg-[#f8f5ee]/95 shadow-lg backdrop-blur-md md:grid-cols-4">
             {/* ================= SUSTAINABLE ================= */}
@@ -303,7 +307,7 @@ function Home() {
       {/* Featured Products */}
       <section className="relative bg-white px-6 py-16 md:px-10">
         {/* Section Heading */}
-        <div className="mb-8 text-center">
+        <div data-aos="fade-right" className="mb-8 text-center">
           <p className="mb-2 mt-6 text-[10px] font-semibold uppercase tracking-[2px] text-[#58745c]">
             OUR PICKS
           </p>
@@ -326,7 +330,7 @@ function Home() {
         {featuredProducts.length === 0 ? (
           <p className="text-center text-gray-500">No products available.</p>
         ) : (
-          <div className="relative mx-auto max-w-6xl">
+          <div className="relative mx-auto max-w-3xl">
             {/* Left Arrow */}
             <button
               type="button"
@@ -335,14 +339,17 @@ function Home() {
                   prev === 0 ? totalSlides - 1 : prev - 1,
                 );
               }}
-              className="absolute -left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#333] shadow-md transition hover:bg-[#315c3b] hover:text-white md:-left-10"
+              className="absolute -left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#333] shadow-md transition hover:bg-[#315c3b] hover:text-white md:-left-20"
             >
               <ChevronLeft size={19} strokeWidth={1.5} />
             </button>
 
             {/* Product Grid */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {currentProducts.map((product) => (
+            <div
+              data-aos="fade-left"
+              className="grid grid-cols-1 gap-8   sm:grid-cols-2 lg:grid-cols-4 "
+            >
+              {currentProducts.slice(0, 4).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -355,7 +362,7 @@ function Home() {
                   prev === totalSlides - 1 ? 0 : prev + 1,
                 );
               }}
-              className="absolute -right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#333] shadow-md transition hover:bg-[#315c3b] hover:text-white md:-right-10"
+              className="absolute -right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#333] shadow-md transition hover:bg-[#315c3b] hover:text-white md:-right-20"
             >
               <ChevronRight size={19} strokeWidth={1.5} />
             </button>
@@ -381,7 +388,7 @@ function Home() {
         )}
 
         {/* View All */}
-        <div className="mt-7 text-center">
+        <div data-aos="fade-up"className="mt-7 text-center">
           <Link
             to="/products"
             className="inline-flex items-center gap-2 border-b border-[#315c3b] pb-1 text-sm font-medium text-[#315c3b] transition hover:border-[#193b25] hover:text-[#193b25]"
@@ -394,7 +401,10 @@ function Home() {
 
       {/* discovery */}
 
-      <section className="relative flex min-h-[430px] w-full overflow-hidden bg-[#f7f5ef] shadow-sm">
+      <section
+        data-aos="fade-up"
+        className="relative flex min-h-[430px] w-full overflow-hidden bg-[#f7f5ef] shadow-sm"
+      >
         {/* Image */}
         <div className="relative h-[430px] w-[55%] shrink-0">
           <img
@@ -469,7 +479,7 @@ function Home() {
       {/* Categories */}
       <section id="category" className="w-full bg-white px-6 py-12 md:py-16">
         {/* Section Heading */}
-        <div className="mb-8 text-center">
+        <div data-aos="fade-up" className="mb-8 text-center">
           <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-[#53604f]">
             Browse Collection
           </p>
@@ -488,6 +498,7 @@ function Home() {
 
         {/* Categories */}
         <div
+          data-aos="fade-up"
           id="categories"
           className="mx-auto flex max-w-6xl flex-wrap justify-center gap-x-7 gap-y-8 md:gap-x-8 lg:gap-x-10"
         >
@@ -563,7 +574,7 @@ function Home() {
         </div>
 
         {/* View All Button */}
-        <div className="mt-8 flex justify-center">
+        <div data-aos="fade-up" className="mt-8 flex justify-center">
           <Link
             to="/products"
             className="group inline-flex items-center gap-3 rounded-[4px] bg-[#17351d] px-5 py-3 text-[11px] font-medium text-white transition-all duration-300 hover:bg-[#254d2d]"
@@ -582,7 +593,10 @@ function Home() {
   ========================= */}
         <div className="relative bg-[#f1f2ec] px-5 py-10 sm:px-8 md:px-12 lg:px-16">
           {/* Decorative Bamboo Leaves - Left */}
-          <div className="pointer-events-none absolute bottom-0 left-0 w-[90px] sm:w-[120px]">
+          <div
+            data-aos="fade-right"
+            className="pointer-events-none absolute bottom-0 left-0 w-[90px] sm:w-[120px]"
+          >
             <svg
               viewBox="0 0 130 130"
               fill="none"
@@ -609,9 +623,10 @@ function Home() {
           </div>
 
           {/* Top Section */}
-          <div className="relative mx-auto flex max-w-7xl items-center gap-5 lg:gap-8">
-            
-
+          <div
+            data-aos="fade-right"
+            className="relative mx-auto flex max-w-7xl items-center gap-5 lg:gap-8"
+          >
             {/* Heading / Intro */}
             <div className="w-full shrink-0 px-0 sm:px-4 md:w-[28%] md:pl-10 lg:pl-8">
               <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.08em] text-[#53604f]">
@@ -642,7 +657,10 @@ function Home() {
             {/* Review Cards */}
             <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
               {/* Review 1 */}
-              <div className="min-h-[125px] rounded-[6px] border border-[#e2e3de] bg-white px-4 py-4 shadow-[0_2px_8px_rgba(0,0,0,0.025)] sm:px-5">
+              <div
+                data-aos="fade-left"
+                className="min-h-[125px] rounded-[6px] border border-[#e2e3de] bg-white px-4 py-4 shadow-[0_2px_8px_rgba(0,0,0,0.025)] sm:px-5"
+              >
                 <div className="mb-3 flex gap-[3px] text-[12px] text-[#efa51b]">
                   <span>★</span>
                   <span>★</span>
@@ -669,7 +687,10 @@ function Home() {
               </div>
 
               {/* Review 2 */}
-              <div className="min-h-[125px] rounded-[6px] border border-[#e2e3de] bg-white px-4 py-4 shadow-[0_2px_8px_rgba(0,0,0,0.025)] sm:px-5">
+              <div
+                data-aos="fade-left"
+                className="min-h-[125px] rounded-[6px] border border-[#e2e3de] bg-white px-4 py-4 shadow-[0_2px_8px_rgba(0,0,0,0.025)] sm:px-5"
+              >
                 <div className="mb-3 flex gap-[3px] text-[12px] text-[#efa51b]">
                   <span>★</span>
                   <span>★</span>
@@ -696,7 +717,10 @@ function Home() {
               </div>
 
               {/* Review 3 */}
-              <div className="min-h-[125px] rounded-[6px] border border-[#e2e3de] bg-white px-4 py-4 shadow-[0_2px_8px_rgba(0,0,0,0.025)] sm:px-5">
+              <div
+                data-aos="fade-left"
+                className="min-h-[125px] rounded-[6px] border border-[#e2e3de] bg-white px-4 py-4 shadow-[0_2px_8px_rgba(0,0,0,0.025)] sm:px-5"
+              >
                 <div className="mb-3 flex gap-[3px] text-[12px] text-[#efa51b]">
                   <span>★</span>
                   <span>★</span>
@@ -722,8 +746,6 @@ function Home() {
                 </div>
               </div>
             </div>
-
-            
           </div>
 
           {/* Slider Dots */}
@@ -740,7 +762,10 @@ function Home() {
         <div className="relative bg-[#faf9f5]">
           <div className="mx-auto flex max-w-7xl flex-col md:flex-row">
             {/* Decorative / Product Image */}
-            <div className="relative hidden h-[125px] w-[25%] overflow-hidden md:block">
+            <div
+              data-aos="fade-right"
+              className="relative hidden h-[125px] w-[25%] overflow-hidden md:block"
+            >
               <img
                 src={cornerimage}
                 alt="Natural bamboo home decor"
@@ -752,7 +777,10 @@ function Home() {
             </div>
 
             {/* Newsletter Content */}
-            <div className="flex flex-1 flex-col justify-center px-6 py-7 sm:px-10 md:flex-row md:items-center md:justify-between md:px-8 lg:px-12">
+            <div
+              data-aos="fade-up"
+              className="flex flex-1 flex-col justify-center px-6 py-7 sm:px-10 md:flex-row md:items-center md:justify-between md:px-8 lg:px-12"
+            >
               {/* Text */}
               <div>
                 <h3 className="font-serif text-[20px] font-normal text-[#20231d]">
@@ -768,6 +796,7 @@ function Home() {
 
               {/* Subscribe Form */}
               <form
+                data-aos="fade-left"
                 onSubmit={(e) => e.preventDefault()}
                 className="mt-5 flex w-full max-w-[390px] md:mt-0"
               >
@@ -828,7 +857,7 @@ function Home() {
                 </svg>
 
                 <span className="font-serif text-xl tracking-wide">
-                  BAMBOORA
+                  WESTEROS
                 </span>
               </div>
 
