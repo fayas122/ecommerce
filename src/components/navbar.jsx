@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ShoppingCart, Heart, User, Menu, X, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [search, setSearch] = useState("");
+
 
   const cartItems = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -13,6 +17,7 @@ function Navbar() {
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const wishlistCount = wishlistItems.length;
+
 
   return (
     <header
@@ -119,34 +124,12 @@ function Navbar() {
             Categories
           </a>
 
-          {/* <Link
-            to="/about"
-            className="text-[12px] font-medium text-white transition-all duration-300 hover:text-[#d9c8a8]"
-          >
-            About Us
-          </Link> */}
 
-          {/* <Link
-            to="/contact"
-            className="text-[12px] font-medium text-white transition-all duration-300 hover:text-[#d9c8a8]"
-          >
-            Contact
-          </Link> */}
         </div>
 
         {/* ================= DESKTOP ACTIONS ================= */}
         <div className="hidden items-center gap-[17px] lg:flex">
-          {/* Search */}
-          <Link
-            to="/products"
-            className="group flex items-center justify-center"
-          >
-            <Search
-              size={22}
-              strokeWidth={1.5}
-              className="text-white transition-transform duration-300 group-hover:scale-110"
-            />
-          </Link>
+          
 
           {/* Wishlist */}
           <Link
@@ -251,37 +234,6 @@ function Navbar() {
               Shop
             </Link>
 
-            {/* <Link
-              to="/#category"
-              onClick={() => setIsMenuOpen(false)}
-              className="border-b border-white/10 py-4 text-sm text-white"
-            >
-              Categories
-            </Link> */}
-
-            {/* <Link
-              to="/about"
-              onClick={() => setIsMenuOpen(false)}
-              className="border-b border-white/10 py-4 text-sm text-white"
-            >
-              About Us
-            </Link>
-
-            <Link
-              to="/blog"
-              onClick={() => setIsMenuOpen(false)}
-              className="border-b border-white/10 py-4 text-sm text-white"
-            >
-              Blog
-            </Link>
-
-            <Link
-              to="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="border-b border-white/10 py-4 text-sm text-white"
-            >
-              Contact
-            </Link> */}
 
             <div className="mt-5 flex items-center gap-6">
               <Link

@@ -540,7 +540,7 @@ function Home() {
 
           {/* Kitchen */}
           <Link
-            to="/products?category=Kitchen"
+            to="/products?category=Kitchen & Dining"
             className="group flex w-[110px] flex-col items-center text-center md:w-[125px]"
           >
             <div className="mb-3 h-[100px] w-[100px] overflow-hidden rounded-full bg-[#e8dfd0] md:h-[115px] md:w-[115px]">

@@ -306,6 +306,16 @@
           "description": "Handwoven bamboo basket for stylish household storage.",
           "stock": 15,
           "quantity": 1
+        },
+        {
+          "id": "3",
+          "title": "Bamboo Coaster Set",
+          "price": 650,
+          "category": "Kitchen & Dining",
+          "image": "/images/Bamboo Coaster Set.jpg",
+          "description": "Set of six natural bamboo coasters with a woven finish.",
+          "stock": 25,
+          "quantity": 3
         }
       ],
       "orders": [

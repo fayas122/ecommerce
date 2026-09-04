@@ -108,20 +108,7 @@ function Products() {
     setCurrentPage(1);
   };
 
-  // =========================
-  // RATING CHANGE
-  // =========================
-
-  const handleRatingChange = (rating) => {
-    if (selectedRating === rating) {
-      setSelectedRating(0);
-    } else {
-      setSelectedRating(rating);
-    }
-
-    setCurrentPage(1);
-  };
-
+  
   // =========================
   // LOADING
   // =========================

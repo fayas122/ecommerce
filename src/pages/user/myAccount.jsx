@@ -80,7 +80,7 @@ function MyAccount() {
           <span>/</span>
 
           <span className="text-[#17351f]">
-            Cart
+            MyAccount
           </span>
 
         </div>
