@@ -23,7 +23,7 @@ function Products() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const productsPerPage = 8;
-
+ 
   const {
     data: products = [],
     isLoading,

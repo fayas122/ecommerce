@@ -5,9 +5,7 @@ import { Package, ArrowLeft } from "lucide-react";
 import { getOrdersByUser } from "../services/orderApi";
 
 const Orders = () => {
-  // Get logged-in user
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  
   const {
     data: orders = [],
     isLoading,

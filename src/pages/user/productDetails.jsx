@@ -129,32 +129,16 @@ function ProductDetails() {
 
           <Link
             to="/"
-            className="text-gray-800 transition hover:text-[#234d20]"
+            className="hover:text-[#17351f] transition"
           >
             Home
           </Link>
 
-          <span>›</span>
+          <span>/</span>
 
-          <Link
-            to="/products"
-            className="text-gray-800 transition hover:text-[#234d20]"
-          >
-            Furniture
-          </Link>
-
-          <span>›</span>
-
-          <span className="text-gray-800">
-            Chairs
+          <span className="text-[#17351f]">
+            ProductsDetails
           </span>
-
-          <span>›</span>
-
-          <span className="truncate text-gray-500">
-            {product.name}
-          </span>
-
         </div>
 
         {/* ================= MAIN PRODUCT AREA ================= */}
@@ -168,7 +152,7 @@ function ProductDetails() {
             {/* Product Image */}
 
             <div className="relative overflow-hidden rounded-xl bg-[#f1eee6]">
-
+              
               <img
                 src={image}
                 alt={product.name}

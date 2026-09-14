@@ -316,6 +316,16 @@
           "description": "Set of six natural bamboo coasters with a woven finish.",
           "stock": 25,
           "quantity": 3
+        },
+        {
+          "id": "7",
+          "title": "Bamboo Bunny Basket",
+          "price": 1250,
+          "category": "Home & Decor",
+          "image": "/images/Bamboo Bunny Basket.jpg",
+          "description": "Cute handwoven bamboo basket with a bunny-inspired design.",
+          "stock": 9,
+          "quantity": 1
         }
       ],
       "orders": [
@@ -440,6 +450,25 @@
         "state": "kerala",
         "pincode": "636717"
       }
+    },
+    {
+      "name": "muhammed fayas ",
+      "email": "fayas133@gmail.com",
+      "password": "fayaz123",
+      "wishlist": [
+        {
+          "id": "1",
+          "title": "Handcrafted Bamboo Vase",
+          "price": 1800,
+          "category": "Home & Decor",
+          "image": "/images/Handcrafted Bamboo Vase.jpg",
+          "description": "Handcrafted bamboo vase with a natural woven finish.",
+          "stock": 12
+        }
+      ],
+      "cart": [],
+      "orders": [],
+      "id": "qq8SU5teXDE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

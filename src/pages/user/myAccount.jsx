@@ -43,11 +43,11 @@ function MyAccount() {
   });
 
   // ================= LOGOUT =================
-
-  const handleLogout = () => {
+const handleLogout = () => {
   dispatch(clearCart());
   dispatch(clearWishlist());
   dispatch(logout());
+  localStorage.removeItem("userId");
 };
 
   // ================= REAL COUNTS =================

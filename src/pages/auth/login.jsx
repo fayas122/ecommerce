@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-
 import {
   Mail,
   Lock,
@@ -21,6 +20,7 @@ import { loadWishlist } from "../../features/wishlist/wishlistSlice";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -37,43 +37,29 @@ function Login() {
     mutationFn: loginUser,
 
     onSuccess: (user) => {
-      // =========================
-      // SAVE USER
-      // =========================
 
-      dispatch(setUser(user));
+      // Store ONLY user ID
+      localStorage.setItem("userId", user.id);
 
-      // =========================
-      // LOAD USER CART
-      // =========================
-
-      const savedCart = localStorage.getItem(
-        `cart_${user.id}`
+      // Restore user
+      dispatch(
+        setUser({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          address: user.address || null,
+        })
       );
 
-      const userCart = savedCart
-        ? JSON.parse(savedCart)
-        : [];
-
-      dispatch(loadCart(userCart));
-
-      // =========================
-      // LOAD USER WISHLIST
-      // =========================
-
-      const savedWishlist = localStorage.getItem(
-        `wishlist_${user.id}`
+      // Load cart from API user data
+      dispatch(
+        loadCart(user.cart || [])
       );
 
-      const userWishlist = savedWishlist
-        ? JSON.parse(savedWishlist)
-        : [];
-
-      dispatch(loadWishlist(userWishlist));
-
-      // =========================
-      // GO HOME
-      // =========================
+      // Load wishlist from API user data
+      dispatch(
+        loadWishlist(user.wishlist || [])
+      );
 
       navigate("/");
     },

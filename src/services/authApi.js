@@ -39,3 +39,8 @@ export const registerUser = async (userData) => {
 
   return response.data;
 };
+
+export const getUserById = async (id) => {
+  const response = await api.get(`/users/${id}`);
+  return response.data;
+};

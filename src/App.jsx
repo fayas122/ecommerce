@@ -20,61 +20,61 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadWishlist } from "./features/wishlist/wishlistSlice";
 import { getUserById } from "./services/userApi";
 import { loadCart } from "./features/cart/cartSlice";
+import { setUser } from "./features/auth/authSlice";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from "axios";
+
+
+const api = axios.create({
+  baseURL: "http://localhost:3000",
+});
+
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.auth.user);
 
-  useEffect(() => {
-    const loadUserCart = async () => {
-      if (!user?.id) return;
+  
 
-      try {
-        const userData = await getUserById(user.id);
+ useEffect(() => {
+  const restoreUser = async () => {
+    const userId = localStorage.getItem("userId");
 
-        dispatch(loadCart(userData.cart || []));
-      } catch (error) {
-        console.error("Failed to load cart:", error);
-      }
-    };
+    if (!userId) {
+      return;
+    }
 
-    loadUserCart();
+    try {
+      const userData = await getUserById(userId);
 
-    const fetchCart = async () => {
-      if (!user?.id) {
-        return;
-      }
+      // Restore authenticated user
+      dispatch(
+        setUser({
+          id: userData.id,
+          name: userData.name,
+          email: userData.email,
+          address: userData.address || null,
+        })
+      );
 
-      try {
-        const userData = await getUserById(user.id);
+      // Restore cart from db.json
+      dispatch(loadCart(userData.cart || []));
 
-        dispatch(loadCart(userData.cart || []));
-      } catch (error) {
-        console.error("Failed to load cart:", error);
-      }
-    };
+      // Restore wishlist from db.json
+      dispatch(loadWishlist(userData.wishlist || []));
 
-    fetchCart();
-  }, [user?.id, dispatch]);
+    } catch (error) {
+      console.error("Failed to restore user:", error);
 
-  useEffect(() => {
-    const fetchWishlist = async () => {
-      if (!user?.id) return;
+      // If user doesn't exist anymore
+      localStorage.removeItem("userId");
+    }
+  };
 
-      try {
-        const userData = await getUserById(user.id);
+  restoreUser();
+}, [dispatch]);
 
-        dispatch(loadWishlist(userData.wishlist || []));
-      } catch (error) {
-        console.error("Failed to load wishlist:", error);
-      }
-    };
-
-    fetchWishlist();
-  }, [user?.id, dispatch]);
 
   useEffect(() => {
     AOS.init({
