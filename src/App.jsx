@@ -15,67 +15,68 @@ import Register from "./pages/auth/register";
 import ProtectedRoute from "./components/protectedRoute";
 import AuthProtectedRoute from "./components/authprotectedroute";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
 import { loadWishlist } from "./features/wishlist/wishlistSlice";
 import { getUserById } from "./services/userApi";
 import { loadCart } from "./features/cart/cartSlice";
 import { setUser } from "./features/auth/authSlice";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
-import axios from "axios";
-
-
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-});
-
 
 function App() {
   const dispatch = useDispatch();
 
+  // Used to wait until authentication is restored
+  const [authLoading, setAuthLoading] = useState(true);
 
-  
+  // Restore logged-in user after refresh
+  useEffect(() => {
+    const restoreUser = async () => {
+      const userId = localStorage.getItem("userId");
 
- useEffect(() => {
-  const restoreUser = async () => {
-    const userId = localStorage.getItem("userId");
+      // No logged-in user
+      if (!userId) {
+        setAuthLoading(false);
+        return;
+      }
 
-    if (!userId) {
-      return;
-    }
+      try {
+        // Get user from db.json
+        const userData = await getUserById(userId);
 
-    try {
-      const userData = await getUserById(userId);
+        // Restore authenticated user
+        dispatch(
+          setUser({
+            id: userData.id,
+            name: userData.name,
+            email: userData.email,
+            address: userData.address || null,
+          })
+        );
 
-      // Restore authenticated user
-      dispatch(
-        setUser({
-          id: userData.id,
-          name: userData.name,
-          email: userData.email,
-          address: userData.address || null,
-        })
-      );
+        // Restore cart
+        dispatch(loadCart(userData.cart || []));
 
-      // Restore cart from db.json
-      dispatch(loadCart(userData.cart || []));
+        // Restore wishlist
+        dispatch(loadWishlist(userData.wishlist || []));
+      } catch (error) {
+        console.error("Failed to restore user:", error);
 
-      // Restore wishlist from db.json
-      dispatch(loadWishlist(userData.wishlist || []));
+        // User no longer exists
+        localStorage.removeItem("userId");
+      } finally {
+        // Authentication check completed
+        setAuthLoading(false);
+      }
+    };
 
-    } catch (error) {
-      console.error("Failed to restore user:", error);
+    restoreUser();
+  }, [dispatch]);
 
-      // If user doesn't exist anymore
-      localStorage.removeItem("userId");
-    }
-  };
-
-  restoreUser();
-}, [dispatch]);
-
-
+  // AOS initialization
   useEffect(() => {
     AOS.init({
       duration: 2000,
@@ -83,68 +84,110 @@ function App() {
     });
   }, []);
 
+  // Wait until authentication is restored
+  if (authLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#faf9f5]">
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-[#173D20] border-t-transparent"></div>
+
+          <p className="text-sm text-gray-600">
+            Loading...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <>
-      <Routes>
-        {/* User Routes */}
-        <Route path="/" element={<Home />} />
+    <Routes>
+      {/* ================= USER ROUTES ================= */}
 
-        <Route path="/products" element={<Products />} />
+      <Route
+        path="/"
+        element={<Home />}
+      />
 
-        <Route path="/products/:id" element={<ProductDetails />} />
+      <Route
+        path="/products"
+        element={<Products />}
+      />
 
-        <Route
-          path="/cart"
-          element={
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/products/:id"
+        element={<ProductDetails />}
+      />
 
-        <Route
-          path="/wishlist"
-          element={
-            <ProtectedRoute>
-              <Wishlist />
-            </ProtectedRoute>
-          }
-        />
+      {/* ================= PROTECTED ROUTES ================= */}
 
-        {/* My Account */}
-        <Route
-          path="/myAccount"
-          element={
-            <ProtectedRoute>
-              <MyAccount />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/myAccount/orders" element={<Orders />} />
+      <Route
+        path="/cart"
+        element={
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Auth Routes */}
-        <Route
-          path="/login"
-          element={
-            <AuthProtectedRoute>
-              <Login />
-            </AuthProtectedRoute>
-          }
-        />
+      <Route
+        path="/wishlist"
+        element={
+          <ProtectedRoute>
+            <Wishlist />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/register"
-          element={
-            <AuthProtectedRoute>
-              <Register />
-            </AuthProtectedRoute>
-          }
-        />
+      <Route
+        path="/myAccount"
+        element={
+          <ProtectedRoute>
+            <MyAccount />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* 404 */}
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-      </Routes>
-    </>
+      {/* Orders should also be protected */}
+      <Route
+        path="/myAccount/orders"
+        element={
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ================= AUTH ROUTES ================= */}
+
+      <Route
+        path="/login"
+        element={
+          <AuthProtectedRoute>
+            <Login />
+          </AuthProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/register"
+        element={
+          <AuthProtectedRoute>
+            <Register />
+          </AuthProtectedRoute>
+        }
+      />
+
+      {/* ================= 404 ================= */}
+
+      <Route
+        path="*"
+        element={
+          <h1 className="p-10 text-2xl">
+            404 - Page Not Found
+          </h1>
+        }
+      />
+    </Routes>
   );
 }
 
