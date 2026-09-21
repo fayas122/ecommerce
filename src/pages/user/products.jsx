@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  Search,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Search, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 
+import Navbar from "../../components/navbar";
 import { getProducts } from "../../services/productApi";
 import ProductCard from "../../components/productCard";
 
@@ -23,7 +18,7 @@ function Products() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const productsPerPage = 8;
- 
+
   const {
     data: products = [],
     isLoading,
@@ -47,8 +42,9 @@ function Products() {
       return products.length;
     }
 
-    return products.filter((product) => product.category === categoryName)
-      .length;
+    return products.filter(
+      (product) => product.category === categoryName,
+    ).length;
   };
 
   // =========================
@@ -66,7 +62,8 @@ function Products() {
 
       const productPrice = Number(product.price);
 
-      const matchesPrice = productPrice >= minPrice && productPrice <= maxPrice;
+      const matchesPrice =
+        productPrice >= minPrice && productPrice <= maxPrice;
 
       return matchesSearch && matchesCategory && matchesPrice;
     })
@@ -90,7 +87,9 @@ function Products() {
   // PAGINATION
   // =========================
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const totalPages = Math.ceil(
+    filteredProducts.length / productsPerPage,
+  );
 
   const startIndex = (currentPage - 1) * productsPerPage;
 
@@ -108,7 +107,6 @@ function Products() {
     setCurrentPage(1);
   };
 
-  
   // =========================
   // LOADING
   // =========================
@@ -116,31 +114,27 @@ function Products() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#f8f7f3]">
-        {/* Loading Breadcrumb */}
 
-        <div className="mx-auto max-w-6xl px-5 py-7 sm:px-8 lg:px-6">
-          <div className="mb-6 flex items-center gap-2 text-[11px] text-[#8b8c7d]">
-            <Link to="/" className="transition hover:text-[#17351f]">
-              Home
-            </Link>
-
-            <span>/</span>
-
-            <span className="text-[#17351f]">Shop</span>
-          </div>
+        {/* FIXED NAVBAR */}
+        <div className="fixed left-0 right-0 top-0 z-50">
+          <Navbar />
         </div>
 
-        {/* Loading Layout */}
+        {/* LOADING CONTENT */}
+        <div className="flex min-h-screen pt-[64px]">
 
-        <div className="flex min-h-screen">
-          <aside className="w-[220px] border-r border-stone-200 bg-[#faf9f5] p-6">
-            <h1 className="font-serif text-2xl">Shop</h1>
+          <aside className="w-[220px] shrink-0 border-r border-stone-200 bg-[#faf9f5] p-6">
+            <h1 className="font-serif text-2xl">
+              Shop
+            </h1>
           </aside>
 
           <main className="flex-1 p-8">
-            <p className="text-stone-500">Loading products...</p>
+            <p className="text-stone-500">
+              Loading products...
+            </p>
 
-            <div className="mt-8 grid grid-cols-4 gap-4">
+            <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
                 <div
                   key={item}
@@ -149,6 +143,7 @@ function Products() {
               ))}
             </div>
           </main>
+
         </div>
       </div>
     );
@@ -161,7 +156,9 @@ function Products() {
   if (isError) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#f8f7f3]">
-        <h1 className="text-xl text-stone-700">Failed to load products</h1>
+        <h1 className="text-xl text-stone-700">
+          Failed to load products
+        </h1>
       </div>
     );
   }
@@ -172,13 +169,23 @@ function Products() {
 
   return (
     <div className="min-h-screen bg-[#f8f7f3]">
+
       {/* =========================
-          FIXED LEFT SIDEBAR
+          FIXED NAVBAR
       ========================== */}
 
-      <aside data-aos="fade-right" className="fixed left-0 top-0 h-screen w-[220px] overflow-y-auto border-r border-stone-200 bg-[#faf9f5]">
-        {/* Title */}
+      <div className="fixed left-0 right-0 top-0 z-50">
+        <Navbar />
+      </div>
 
+      {/* =========================
+          FIXED SIDEBAR
+      ========================== */}
+
+      <aside
+        data-aos="fade-right"
+        className="fixed left-0 top-[64px] z-40 h-[calc(100vh-64px)] w-[220px] overflow-y-auto border-r border-stone-200 bg-[#faf9f5]"
+      >
         <div className="px-6 pb-7 pt-5">
           <h1 className="font-serif text-2xl font-medium text-[#2f352b]">
             Shop
@@ -186,13 +193,19 @@ function Products() {
         </div>
 
         <div className="px-5">
-          <h2 className="mb-5 text-sm font-semibold text-stone-700">Filters</h2>
+
+          {/* FILTER TITLE */}
+
+          <h2 className="mb-5 text-sm font-semibold text-stone-700">
+            Filters
+          </h2>
 
           {/* =========================
               CATEGORIES
           ========================== */}
 
           <div className="border-b border-stone-200 pb-5">
+
             <button
               type="button"
               className="mb-4 flex w-full items-center justify-between"
@@ -205,12 +218,14 @@ function Products() {
             </button>
 
             <div className="space-y-3">
+
               {categories.map((item) => (
                 <label
                   key={item}
                   className="flex cursor-pointer items-center justify-between text-xs text-stone-600"
                 >
                   <div className="flex items-center gap-2">
+
                     <input
                       type="checkbox"
                       checked={category === item}
@@ -218,14 +233,19 @@ function Products() {
                       className="h-3 w-3 accent-[#61734f]"
                     />
 
-                    <span>{item}</span>
+                    <span>
+                      {item}
+                    </span>
+
                   </div>
 
                   <span className="text-stone-400">
                     ({getCategoryCount(item)})
                   </span>
+
                 </label>
               ))}
+
             </div>
           </div>
 
@@ -234,19 +254,23 @@ function Products() {
           ========================== */}
 
           <div className="border-b border-stone-200 py-5">
+
             <h3 className="mb-4 text-xs font-semibold text-stone-600">
               Price Range
             </h3>
 
-            {/* Starting Price */}
+            {/* STARTING PRICE */}
 
             <div className="mb-4">
+
               <label className="mb-2 block text-[10px] text-stone-500">
                 Starting Price
               </label>
 
               <div>
-                <span className="text-xs text-stone-500">₹</span>
+                <span className="text-xs text-stone-500">
+                  ₹
+                </span>
 
                 <input
                   type="range"
@@ -265,11 +289,13 @@ function Products() {
                   className="w-full accent-[#244228]"
                 />
               </div>
+
             </div>
 
-            {/* Maximum Price */}
+            {/* MAXIMUM PRICE */}
 
             <div className="mb-3">
+
               <label className="mb-2 block text-[10px] text-stone-500">
                 Maximum Price
               </label>
@@ -290,16 +316,25 @@ function Products() {
                 }}
                 className="w-full accent-[#244228]"
               />
+
             </div>
 
-            {/* Price Values */}
+            {/* PRICE VALUES */}
 
             <div className="flex justify-between text-[10px] text-stone-600">
-              <span>₹{minPrice.toLocaleString("en-IN")}</span>
 
-              <span>₹{maxPrice.toLocaleString("en-IN")}</span>
+              <span>
+                ₹{minPrice.toLocaleString("en-IN")}
+              </span>
+
+              <span>
+                ₹{maxPrice.toLocaleString("en-IN")}
+              </span>
+
             </div>
+
           </div>
+
         </div>
       </aside>
 
@@ -307,29 +342,21 @@ function Products() {
           RIGHT PRODUCTS SECTION
       ========================== */}
 
-      <main data-aos="fade-left" className="ml-[220px] min-h-screen bg-[#f8f7f3] px-6 py-5">
-        {/* =========================
-            BREADCRUMB
-        ========================== */}
-
-        <div className="mb-5 flex items-center gap-2 text-[11px] text-[#8b8c7d]">
-          <Link to="/" className="transition hover:text-[#17351f]">
-            Home
-          </Link>
-
-          <span>/</span>
-
-          <span className="text-[#17351f]">Shop</span>
-        </div>
+      <main
+        data-aos="fade-left"
+        className="ml-[220px] min-h-screen bg-[#f8f7f3] px-6 pb-5 pt-[84px]"
+      >
 
         {/* =========================
             SEARCH AND SORT
         ========================== */}
 
         <div className="flex items-center justify-between gap-5">
-          {/* Search */}
+
+          {/* SEARCH */}
 
           <div className="relative w-full max-w-[320px]">
+
             <Search
               size={13}
               className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
@@ -345,12 +372,16 @@ function Products() {
               }}
               className="h-9 w-full rounded-md border border-stone-300 bg-[#faf9f5] pl-9 pr-4 text-xs text-stone-700 outline-none"
             />
+
           </div>
 
-          {/* Sort */}
+          {/* SORT */}
 
           <div className="flex shrink-0 items-center gap-2">
-            <span className="text-[10px] text-stone-500">Sort by:</span>
+
+            <span className="text-[10px] text-stone-500">
+              Sort by:
+            </span>
 
             <select
               value={sort}
@@ -360,15 +391,25 @@ function Products() {
               }}
               className="h-9 rounded-md border border-stone-300 bg-[#faf9f5] px-3 text-[10px] text-stone-700 outline-none"
             >
-              <option value="default">Most Popular</option>
+              <option value="default">
+                Most Popular
+              </option>
 
-              <option value="low">Low to High</option>
+              <option value="low">
+                Low to High
+              </option>
 
-              <option value="high">High to Low</option>
+              <option value="high">
+                High to Low
+              </option>
 
-              <option value="name">Name</option>
+              <option value="name">
+                Name
+              </option>
             </select>
+
           </div>
+
         </div>
 
         {/* =========================
@@ -384,13 +425,19 @@ function Products() {
         ========================== */}
 
         {currentProducts.length === 0 ? (
+
           <div className="py-20 text-center">
+
             <h2 className="text-lg font-medium text-stone-700">
               No products found
             </h2>
+
           </div>
+
         ) : (
+
           <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 lg:grid-cols-4">
+
             {currentProducts.map((product) => (
               <ProductCard
                 key={product.id}
@@ -398,7 +445,9 @@ function Products() {
                 dispatch={dispatch}
               />
             ))}
+
           </div>
+
         )}
 
         {/* =========================
@@ -406,53 +455,65 @@ function Products() {
         ========================== */}
 
         {totalPages > 1 && (
+
           <div className="mt-10 flex justify-center gap-2">
-            {/* Previous */}
+
+            {/* PREVIOUS */}
 
             <button
               type="button"
               disabled={currentPage === 1}
-              onClick={() => setCurrentPage((page) => page - 1)}
+              onClick={() =>
+                setCurrentPage((page) => page - 1)
+              }
               className="flex h-8 w-8 items-center justify-center rounded-md border border-stone-300 disabled:opacity-40"
             >
               <ChevronLeft size={14} />
             </button>
 
-            {/* Page Numbers */}
+            {/* PAGE NUMBERS */}
 
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-              (page) => (
-                <button
-                  type="button"
-                  key={page}
-                  onClick={() => setCurrentPage(page)}
-                  className={`h-8 w-8 rounded-md text-xs ${
-                    currentPage === page
-                      ? "bg-[#244228] text-white"
-                      : "border border-stone-300 text-stone-600"
-                  }`}
-                >
-                  {page}
-                </button>
-              ),
-            )}
+            {Array.from(
+              { length: totalPages },
+              (_, index) => index + 1,
+            ).map((page) => (
 
-            {/* Next */}
+              <button
+                type="button"
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`h-8 w-8 rounded-md text-xs ${
+                  currentPage === page
+                    ? "bg-[#244228] text-white"
+                    : "border border-stone-300 text-stone-600"
+                }`}
+              >
+                {page}
+              </button>
+
+            ))}
+
+            {/* NEXT */}
 
             <button
               type="button"
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((page) => page + 1)}
+              onClick={() =>
+                setCurrentPage((page) => page + 1)
+              }
               className="flex h-8 w-8 items-center justify-center rounded-md border border-stone-300 disabled:opacity-40"
             >
               <ChevronRight size={14} />
             </button>
+
           </div>
+
         )}
+
       </main>
+
     </div>
   );
 }
-
 
 export default Products;

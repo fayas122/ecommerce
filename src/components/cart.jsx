@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import toast  from "react-hot-toast"
+import toast from "react-hot-toast"
+import Navbar from "./navbar";
 
 import {
   increaseQuantity,
@@ -96,9 +97,9 @@ function Cart() {
       const updatedCart = cartItems.map((item) =>
         item.id === productId
           ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
+            ...item,
+            quantity: item.quantity + 1,
+          }
           : item
       );
 
@@ -140,9 +141,9 @@ function Cart() {
       const updatedCart = cartItems.map((item) =>
         item.id === productId
           ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
+            ...item,
+            quantity: item.quantity - 1,
+          }
           : item
       );
 
@@ -263,7 +264,9 @@ function Cart() {
 
     // Address already exists
     placeOrder(currentUser);
-   
+    toast.success("Order placed");
+
+
   };
 
   // =========================
@@ -297,18 +300,7 @@ function Cart() {
       <main className="min-h-screen bg-[#faf8f2] px-5 py-12">
         <div className="flex items-center gap-2 mb-10 text-[11px] font-sans text-[#8b8c7d]">
 
-          <Link
-            to="/"
-            className="hover:text-[#17351f] transition"
-          >
-            Home
-          </Link>
-
-          <span>/</span>
-
-          <span className="text-[#17351f]">
-            Cart
-          </span>
+          <Navbar/>
 
         </div>
 
@@ -356,20 +348,9 @@ function Cart() {
 
         {/* Breadcrumb */}
 
-        <div className="flex items-center gap-2 mb-6 text-[11px] text-[#8b8c7d]">
+        <div className="flex items-center gap-2 mb-12 ">
 
-          <Link
-            to="/"
-            className="hover:text-[#17351f] transition"
-          >
-            Home
-          </Link>
-
-          <span>/</span>
-
-          <span className="text-[#17351f]">
-            Cart
-          </span>
+          <Navbar/>
 
         </div>
 
@@ -605,8 +586,8 @@ function Cart() {
                   {shipping === 0
                     ? "FREE"
                     : `₹${shipping.toLocaleString(
-                        "en-IN"
-                      )}`}
+                      "en-IN"
+                    )}`}
                 </span>
 
               </div>

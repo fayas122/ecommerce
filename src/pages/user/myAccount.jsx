@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { clearCart } from "../../features/cart/cartSlice";
 import { clearWishlist } from "../../features/wishlist/wishlistSlice";
-
+import Navbar from "../../components/navbar";
 import {
   ShoppingBag,
   ShoppingCart,
@@ -70,18 +70,7 @@ const handleLogout = () => {
       <main className="mx-auto w-full max-w-[1500px] px-6 py-8 md:px-10 lg:px-14">
         <div className="flex items-center gap-2 mb-10 text-[11px] font-sans text-[#8b8c7d]">
 
-          <Link
-            to="/"
-            className="hover:text-[#17351f] transition"
-          >
-            Home
-          </Link>
-
-          <span>/</span>
-
-          <span className="text-[#17351f]">
-            MyAccount
-          </span>
+          <Navbar/>
 
         </div>
         {/* ================================================= */}
@@ -90,25 +79,7 @@ const handleLogout = () => {
 
         <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="flex items-center gap-2">
-              <svg viewBox="0 0 30 30" className="h-9 w-9" fill="none">
-                <path
-                  d="M8 26V5M14 26V2M20 26V7"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-
-                <path
-                  d="M8 9L4 5M8 14L3 11M14 7L19 3M14 12L20 9M20 12L25 8M20 17L26 14"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                />
-              </svg>
-
-              <span className="font-serif text-[20px] font-medium tracking-[2px] text-[#37422d]">
-                WESTEROS
-              </span>
-            </div>
+           
 
             <h1 className="mt-5 text-3xl font-semibold text-[#242820]">
               My Account
