@@ -1,163 +1,334 @@
 import { Routes, Route } from "react-router-dom";
-
-// User pages
-import Home from "./pages/user/Home";
-import Products from "./pages/user/products";
-import ProductDetails from "./pages/user/productDetails";
-import Cart from "./components/cart";
-import Wishlist from "./components/wishlist";
-import MyAccount from "./pages/user/myAccount";
-import Orders from "./components/orders";
-
-// Auth pages
-import Login from "./pages/auth/login";
-import Register from "./pages/auth/register";
-import ProtectedRoute from "./components/protectedRoute";
-import AuthProtectedRoute from "./components/authprotectedroute";
-
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { loadWishlist } from "./features/wishlist/wishlistSlice";
-import { getUserById } from "./services/userApi";
-import { loadCart } from "./features/cart/cartSlice";
-import { setUser } from "./features/auth/authSlice";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// ==========================================
+// USER PAGES
+// ==========================================
+
+import Home from "./pages/user/Home";
+import Products from "./pages/user/products";
+import ProductDetails from "./pages/user/productDetails";
+
+import Cart from "./components/cart";
+import Wishlist from "./components/wishlist";
+import Orders from "./components/orders";
+
+import MyAccount from "./pages/user/myAccount";
+
+// ==========================================
+// AUTH
+// ==========================================
+
+import Login from "./pages/auth/login";
+import Register from "./pages/auth/register";
+
+// ==========================================
+// PROTECTED ROUTES
+// ==========================================
+
+import ProtectedRoute from "./components/protectedRoute";
+import AuthProtectedRoute from "./components/authprotectedroute";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import UserProtectedRoute from "./components/Userprotectedroute";
+
+// ==========================================
+// LAYOUTS
+// ==========================================
+
+import UserLayout from "./Layouts/UserLayout";
+import AdminLayout from "./Layouts/AdminLayout";
+
+// ==========================================
+// ADMIN PAGES
+// ==========================================
+
+import Dashboard from "./pages/admin/Dashboard";
+import AdminOrders from "./pages/Admin/Orders"
+import AdminProducts from "./pages/Admin/AsminProducts";
+import Users from "./pages/Admin/Users";
+
+// ==========================================
+// REDUX
+// ==========================================
+
+import {
+  loadWishlist,
+} from "./features/wishlist/wishlistSlice";
+
+import {
+  loadCart,
+} from "./features/cart/cartSlice";
+
+import {
+  setUser,
+} from "./features/auth/authSlice";
+
+import {
+  setAdmin,
+} from "./features/auth/adminAuthSlice";
+
+// ==========================================
+// API
+// ==========================================
+
+import {
+  getUserById,
+} from "./services/userApi";
+
 function App() {
   const dispatch = useDispatch();
 
-  // Used to wait until authentication is restored
   const [authLoading, setAuthLoading] = useState(true);
 
-  // Restore logged-in user after refresh
+  // ==========================================
+  // RESTORE AUTHENTICATION
+  // ==========================================
+
   useEffect(() => {
-    const restoreUser = async () => {
-      const userId = localStorage.getItem("userId");
+    const restoreAuthentication = async () => {
 
-      // No logged-in user
-      if (!userId) {
-        setAuthLoading(false);
-        return;
+      // ========================================
+      // RESTORE NORMAL USER
+      // ========================================
+
+      const userId =
+        localStorage.getItem("userId");
+
+      if (userId) {
+        try {
+          const userData =
+            await getUserById(userId);
+
+          // Don't allow admin inside normal auth
+          if (userData.role !== "admin") {
+
+            dispatch(
+              setUser({
+                id: userData.id,
+                name: userData.name,
+                email: userData.email,
+                role:
+                  userData.role || "user",
+                address:
+                  userData.address || null,
+              })
+            );
+
+            dispatch(
+              loadCart(
+                userData.cart || []
+              )
+            );
+
+            dispatch(
+              loadWishlist(
+                userData.wishlist || []
+              )
+            );
+
+          } else {
+
+            localStorage.removeItem(
+              "userId"
+            );
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "Failed to restore user:",
+            error
+          );
+
+          localStorage.removeItem(
+            "userId"
+          );
+        }
       }
 
-      try {
-        // Get user from db.json
-        const userData = await getUserById(userId);
+      // ========================================
+      // RESTORE ADMIN
+      // ========================================
 
-        // Restore authenticated user
-        dispatch(
-          setUser({
-            id: userData.id,
-            name: userData.name,
-            email: userData.email,
-            address: userData.address || null,
-          })
-        );
+      const adminId =
+        localStorage.getItem("adminId");
 
-        // Restore cart
-        dispatch(loadCart(userData.cart || []));
+      if (adminId) {
 
-        // Restore wishlist
-        dispatch(loadWishlist(userData.wishlist || []));
-      } catch (error) {
-        console.error("Failed to restore user:", error);
+        try {
 
-        // User no longer exists
-        localStorage.removeItem("userId");
-      } finally {
-        // Authentication check completed
-        setAuthLoading(false);
+          const adminData =
+            await getUserById(adminId);
+
+          if (
+            adminData.role === "admin"
+          ) {
+
+            dispatch(
+              setAdmin({
+                id: adminData.id,
+                name: adminData.name,
+                email: adminData.email,
+                role: adminData.role,
+              })
+            );
+
+          } else {
+
+            localStorage.removeItem(
+              "adminId"
+            );
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "Failed to restore admin:",
+            error
+          );
+
+          localStorage.removeItem(
+            "adminId"
+          );
+        }
       }
+
+      // ========================================
+      // FINISHED
+      // ========================================
+
+      setAuthLoading(false);
     };
 
-    restoreUser();
+    restoreAuthentication();
+
   }, [dispatch]);
 
-  // AOS initialization
+  // ==========================================
+  // AOS
+  // ==========================================
+
   useEffect(() => {
+
     AOS.init({
       duration: 2000,
       once: true,
     });
+
   }, []);
 
-  // Wait until authentication is restored
-  if (authLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#faf9f5]">
-        <div className="text-center">
-          <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-[#173D20] border-t-transparent"></div>
+  // ==========================================
+  // AUTH LOADING
+  // ==========================================
 
-          <p className="text-sm text-gray-600">
+  if (authLoading) {
+
+    return (
+      <div className="min-h-screen bg-[#f8f5ee] flex items-center justify-center">
+
+        <div className="text-center">
+
+          <div className="w-12 h-12 border-4 border-[#173D20]/20 border-t-[#173D20] rounded-full animate-spin mx-auto mb-4"></div>
+
+          <p className="text-[#173D20] font-medium">
             Loading...
           </p>
+
         </div>
+
       </div>
     );
   }
 
+  // ==========================================
+  // ROUTES
+  // ==========================================
+
   return (
+
     <Routes>
-      {/* ================= USER ROUTES ================= */}
 
-      <Route
-        path="/"
-        element={<Home />}
-      />
+      {/* ======================================
+          USER ROUTES
+      ====================================== */}
 
-      <Route
-        path="/products"
-        element={<Products />}
-      />
+      <Route element={
+        <UserProtectedRoute>
+          <UserLayout />
+        </UserProtectedRoute>
+        }>
 
-      <Route
-        path="/products/:id"
-        element={<ProductDetails />}
-      />
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-      {/* ================= PROTECTED ROUTES ================= */}
+        <Route
+          path="/products"
+          element={<Products />}
+        />
 
-      <Route
-        path="/cart"
-        element={
-          <ProtectedRoute>
-            <Cart />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path="/products/:id"
+          element={<ProductDetails />}
+        />
 
-      <Route
-        path="/wishlist"
-        element={
-          <ProtectedRoute>
-            <Wishlist />
-          </ProtectedRoute>
-        }
-      />
+        {/* CART */}
 
-      <Route
-        path="/myAccount"
-        element={
-          <ProtectedRoute>
-            <MyAccount />
-          </ProtectedRoute>
-        }
-      />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
 
-      {/* Orders should also be protected */}
-      <Route
-        path="/myAccount/orders"
-        element={
-          <ProtectedRoute>
-            <Orders />
-          </ProtectedRoute>
-        }
-      />
+        {/* WISHLIST */}
 
-      {/* ================= AUTH ROUTES ================= */}
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ACCOUNT */}
+
+        <Route
+          path="/myAccount"
+          element={
+            <ProtectedRoute>
+              <MyAccount />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ORDERS */}
+
+        <Route
+          path="/myAccount/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+
+      </Route>
+
+
+      {/* ======================================
+          LOGIN
+      ====================================== */}
 
       <Route
         path="/login"
@@ -168,6 +339,11 @@ function App() {
         }
       />
 
+
+      {/* ======================================
+          REGISTER
+      ====================================== */}
+
       <Route
         path="/register"
         element={
@@ -176,17 +352,85 @@ function App() {
           </AuthProtectedRoute>
         }
       />
+ 
 
-      {/* ================= 404 ================= */}
+      {/* ======================================
+          ADMIN ROUTES
+      ====================================== */}
+
+      <Route
+        path="/admin"
+        element={
+          <AdminProtectedRoute>
+            <AdminLayout />
+          </AdminProtectedRoute>
+        }
+      >
+
+        {/* /admin */}
+
+        <Route
+          index
+          element={<Dashboard />}
+        />
+
+        <Route
+          path="adminorders"
+          element={<AdminOrders />}
+        />
+
+
+        <Route
+          path="products"
+          element={<AdminProducts />}
+        />
+
+        <Route
+          path="users"
+          element={<Users />}
+        />
+
+      </Route>
+
+
+      {/* ======================================
+          404
+      ====================================== */}
 
       <Route
         path="*"
         element={
-          <h1 className="p-10 text-2xl">
-            404 - Page Not Found
-          </h1>
+
+          <div className="min-h-screen bg-[#f8f5ee] flex items-center justify-center px-6">
+
+            <div className="text-center">
+
+              <h1 className="text-7xl font-bold text-[#173D20]">
+                404
+              </h1>
+
+              <h2 className="text-2xl font-semibold text-gray-800 mt-4">
+                Page Not Found
+              </h2>
+
+              <p className="text-gray-500 mt-2">
+                The page you are looking for does not exist.
+              </p>
+
+              <a
+                href="/"
+                className="inline-block mt-6 px-6 py-3 bg-[#173D20] text-white rounded-lg hover:bg-[#214B29] transition"
+              >
+                Back to Home
+              </a>
+
+            </div>
+
+          </div>
+
         }
       />
+
     </Routes>
   );
 }

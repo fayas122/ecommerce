@@ -21,7 +21,6 @@ export const getOrdersByUser = async (userId) => {
 export const getOrders = async () => {
   const response = await api.get("/users");
 
-  // Get orders from every user
   const allOrders = response.data.flatMap(
     (user) =>
       (user.orders || []).map((order) => ({
@@ -33,11 +32,33 @@ export const getOrders = async () => {
   return allOrders;
 };
 
-// =========================
-// GET SINGLE ORDER
-// =========================
 
-export const getOrderById = async (userId, orderId) => {
+export const updateOrder = async (userId, orderId, status, deliveryMessage) => {
+  const userResponse = await api.get(`/users/${userId}`);
+
+  const user = userResponse.data;
+
+  const updatedOrders = user.orders.map((order) =>
+    String(order.id) === String(orderId)
+      ? {
+          ...order,
+          status,
+          deliveryMessage,
+        }
+      : order
+  );
+
+  const response = await api.patch(`/users/${userId}`, {
+    orders: updatedOrders,
+  });
+
+  return response.data;
+};
+
+export const getOrderById = async (
+  userId,
+  orderId
+) => {
   const response = await api.get(`/users/${userId}`);
 
   const orders = response.data.orders || [];
@@ -57,7 +78,7 @@ export const createOrder = async ({
   userId,
   orderData,
 }) => {
-  // Get the user
+  // Get user
   const response = await api.get(`/users/${userId}`);
 
   const user = response.data;
@@ -68,13 +89,13 @@ export const createOrder = async ({
     ...orderData,
   };
 
-  // Add new order to existing orders
+  // Add order
   const updatedOrders = [
     ...(user.orders || []),
     newOrder,
   ];
 
-  // Update user's orders
+  // Save orders
   await api.patch(`/users/${userId}`, {
     orders: updatedOrders,
   });

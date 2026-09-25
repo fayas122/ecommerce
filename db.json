@@ -6,8 +6,11 @@
       "price": 1800,
       "category": "Home & Decor",
       "image": "/images/Handcrafted Bamboo Vase.jpg",
-      "description": "Handcrafted bamboo vase with a natural woven finish.",
-      "stock": 12
+      "description": "Beautiful handcrafted bamboo vase with a natural finish, perfect for home decoration.",
+      "stock": 11,
+      "deleted": false,
+      "rating": 0,
+      "reviews": 0
     },
     {
       "id": "2",
@@ -15,8 +18,9 @@
       "price": 2200,
       "category": "Home & Decor",
       "image": "/images/Rattan Bamboo Vase.jpg",
-      "description": "Decorative rattan bamboo vase designed for natural home interiors.",
-      "stock": 8
+      "description": "Elegant rattan bamboo vase with a natural woven design for stylish home decor.",
+      "stock": 10,
+      "deleted": false
     },
     {
       "id": "3",
@@ -25,7 +29,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/Bamboo Coaster Set.jpg",
       "description": "Set of six natural bamboo coasters with a woven finish.",
-      "stock": 25
+      "stock": 25,
+      "deleted": false
     },
     {
       "id": "4",
@@ -34,7 +39,8 @@
       "category": "Storage",
       "image": "/images/Bamboo Woven cap.jpg",
       "description": "Handwoven bamboo basket for stylish household storage.",
-      "stock": 15
+      "stock": 15,
+      "deleted": false
     },
     {
       "id": "5",
@@ -43,7 +49,8 @@
       "category": "Storage",
       "image": "/images/Babmoo Woven bsket.jpg",
       "description": "Lightweight woven bamboo basket for home organization and decor.",
-      "stock": 10
+      "stock": 10,
+      "deleted": false
     },
     {
       "id": "6",
@@ -52,7 +59,8 @@
       "category": "Lifestyle",
       "image": "/images/bamboo sun hat.jpg",
       "description": "Lightweight natural woven bamboo hat for outdoor use.",
-      "stock": 20
+      "stock": 20,
+      "deleted": false
     },
     {
       "id": "7",
@@ -61,7 +69,8 @@
       "category": "Home & Decor",
       "image": "/images/Bamboo Bunny Basket.jpg",
       "description": "Cute handwoven bamboo basket with a bunny-inspired design.",
-      "stock": 9
+      "stock": 9,
+      "deleted": false
     },
     {
       "id": "8",
@@ -70,7 +79,8 @@
       "category": "Home & Decor",
       "image": "/images/bamboo table lamb.jpg",
       "description": "Warm decorative bamboo table lamp with a natural woven shade.",
-      "stock": 7
+      "stock": 7,
+      "deleted": false
     },
     {
       "id": "9",
@@ -79,7 +89,8 @@
       "category": "Lifestyle",
       "image": "/images/Bamboo Hair Brush.jpg",
       "description": "Eco-friendly bamboo hair brush with natural wooden bristles.",
-      "stock": 30
+      "stock": 30,
+      "deleted": false
     },
     {
       "id": "10",
@@ -88,7 +99,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/Bamboo Cutlery Set.jpg",
       "description": "Reusable bamboo cutlery set for everyday dining.",
-      "stock": 18
+      "stock": 18,
+      "deleted": false
     },
     {
       "id": "11",
@@ -97,7 +109,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo seed basket.jpg",
       "description": "Natural woven bamboo plate for serving and decorative use.",
-      "stock": 22
+      "stock": 22,
+      "deleted": false
     },
     {
       "id": "12",
@@ -106,7 +119,8 @@
       "category": "Home & Decor",
       "image": "/images/bamboo dustpan and brush set.jpg",
       "description": "Eco-friendly bamboo dustpan and brush set for everyday cleaning.",
-      "stock": 16
+      "stock": 16,
+      "deleted": false
     },
     {
       "id": "13",
@@ -115,7 +129,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo straw  set.jpg",
       "description": "Reusable natural bamboo drinking straws for sustainable living.",
-      "stock": 35
+      "stock": 35,
+      "deleted": false
     },
     {
       "id": "14",
@@ -124,7 +139,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/Bamboo serving spoon.jpg",
       "description": "Handcrafted bamboo serving spoon for cooking and serving.",
-      "stock": 28
+      "stock": 28,
+      "deleted": false
     },
     {
       "id": "15",
@@ -133,7 +149,8 @@
       "category": "Office & Stationery",
       "image": "/images/bamboo pen holder.jpg",
       "description": "Handwoven bamboo pen holder for desks and workspaces.",
-      "stock": 24
+      "stock": 24,
+      "deleted": false
     },
     {
       "id": "16",
@@ -142,7 +159,8 @@
       "category": "Office & Stationery",
       "image": "/images/bamboo desk organizer.jpg",
       "description": "Compact bamboo organizer for pens, pencils and desk accessories.",
-      "stock": 14
+      "stock": 14,
+      "deleted": false
     },
     {
       "id": "17",
@@ -151,7 +169,8 @@
       "category": "Home & Decor",
       "image": "/images/bamboo wind chime.jpg",
       "description": "Natural bamboo wind chime that adds a relaxing outdoor touch.",
-      "stock": 11
+      "stock": 11,
+      "deleted": false
     },
     {
       "id": "18",
@@ -160,7 +179,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo wooden cutlery set.jpg",
       "description": "Reusable bamboo-style wooden cutlery set for everyday meals.",
-      "stock": 20
+      "stock": 20,
+      "deleted": false
     },
     {
       "id": "19",
@@ -169,7 +189,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo steamer.jpg",
       "description": "Traditional bamboo steamer for healthy steaming and cooking.",
-      "stock": 13
+      "stock": 13,
+      "deleted": false
     },
     {
       "id": "20",
@@ -178,7 +199,8 @@
       "category": "Home & Decor",
       "image": "/images/bamboo lantern.jpg",
       "description": "Decorative woven bamboo lantern with a warm natural look.",
-      "stock": 9
+      "stock": 9,
+      "deleted": false
     },
     {
       "id": "21",
@@ -187,7 +209,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo sieve.jpg",
       "description": "Traditional handwoven bamboo sieve for kitchen use.",
-      "stock": 17
+      "stock": 17,
+      "deleted": false
     },
     {
       "id": "22",
@@ -196,7 +219,8 @@
       "category": "Lifestyle",
       "image": "/images/bamboo sohpping bag.jpg",
       "description": "Reusable woven bamboo shopping bag with sturdy handles.",
-      "stock": 12
+      "stock": 12,
+      "deleted": false
     },
     {
       "id": "23",
@@ -205,7 +229,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo cup set.jpg",
       "description": "Set of natural bamboo cups for everyday beverages.",
-      "stock": 19
+      "stock": 19,
+      "deleted": false
     },
     {
       "id": "24",
@@ -214,7 +239,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo tumbler.jpg",
       "description": "Set of reusable bamboo tumblers with a smooth natural finish.",
-      "stock": 21
+      "stock": 21,
+      "deleted": false
     },
     {
       "id": "25",
@@ -223,7 +249,8 @@
       "category": "Storage",
       "image": "/images/bamboo storage box.jpg",
       "description": "Natural bamboo storage box for organizing household items.",
-      "stock": 14
+      "stock": 14,
+      "deleted": false
     },
     {
       "id": "26",
@@ -232,7 +259,8 @@
       "category": "Kitchen & Dining",
       "image": "/images/bamboo plates.jpg",
       "description": "Simple sustainable bamboo plate for everyday serving.",
-      "stock": 26
+      "stock": 26,
+      "deleted": false
     },
     {
       "id": "27",
@@ -241,7 +269,8 @@
       "category": "Lifestyle",
       "image": "/images/bamboo water bottle.jpg",
       "description": "Reusable bamboo water bottle with a natural handcrafted finish.",
-      "stock": 18
+      "stock": 18,
+      "deleted": false
     },
     {
       "id": "28",
@@ -250,7 +279,8 @@
       "category": "Furniture",
       "image": "/images/Bamboo folding chair.jpg",
       "description": "Foldable handcrafted bamboo chair suitable for indoor and outdoor use.",
-      "stock": 6
+      "stock": 6,
+      "deleted": false
     },
     {
       "id": "29",
@@ -259,7 +289,8 @@
       "category": "Storage",
       "image": "/images/bamboo basket organizer.jpg",
       "description": "Woven bamboo organizer basket for keeping household items tidy.",
-      "stock": 15
+      "stock": 15,
+      "deleted": false
     },
     {
       "id": "30",
@@ -268,242 +299,31 @@
       "category": "Kitchen & Dining",
       "image": "/images/Bamboo Kitchen Utensil Set.jpg",
       "description": "Natural bamboo kitchen utensil set for cooking and serving.",
-      "stock": 16
+      "stock": 16,
+      "deleted": false
     }
   ],
   "users": [
     {
+      "id": "admin1",
+      "name": "Westeros Admin",
+      "email": "admin@westeros.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
       "name": "muhammed fayas ",
       "email": "fayas122@gmail.com",
       "password": "fayas123",
-      "wishlist": [
-        {
-          "id": "2",
-          "title": "Rattan Bamboo Vase",
-          "price": 2200,
-          "category": "Home & Decor",
-          "image": "/images/Rattan Bamboo Vase.jpg",
-          "description": "Decorative rattan bamboo vase designed for natural home interiors.",
-          "stock": 8
-        },
-        {
-          "id": "4",
-          "title": "Woven Bamboo Basket",
-          "price": 1400,
-          "category": "Storage",
-          "image": "/images/Bamboo Woven cap.jpg",
-          "description": "Handwoven bamboo basket for stylish household storage.",
-          "stock": 15
-        }
-      ],
-      "cart": [],
-      "orders": [
-        {
-          "id": "order-1788343969189",
-          "customer": {
-            "name": "muhammed fayas ",
-            "email": "fayas122@gmail.com"
-          },
-          "address": {
-            "fullName": "muhammed fayas ",
-            "addressLine": "rp house, chelari",
-            "city": "chelari",
-            "state": "kerala",
-            "pincode": "636717"
-          },
-          "items": [
-            {
-              "id": "3",
-              "title": "Bamboo Coaster Set",
-              "price": 650,
-              "quantity": 1,
-              "image": "/images/Bamboo Coaster Set.jpg"
-            }
-          ],
-          "subtotal": 650,
-          "shipping": 0,
-          "totalAmount": 650,
-          "status": "Processing",
-          "createdAt": "2026-09-02T10:12:49.181Z"
-        },
-        {
-          "id": "order-1788410394254",
-          "customer": {
-            "name": "muhammed fayas ",
-            "email": "fayas122@gmail.com"
-          },
-          "address": {
-            "fullName": "muhammed fayas ",
-            "addressLine": "rp house, chelari",
-            "city": "chelari",
-            "state": "kerala",
-            "pincode": "636717"
-          },
-          "items": [
-            {
-              "id": "4",
-              "title": "Woven Bamboo Basket",
-              "price": 1400,
-              "quantity": 1,
-              "image": "/images/Bamboo Woven cap.jpg"
-            }
-          ],
-          "subtotal": 1400,
-          "shipping": 0,
-          "totalAmount": 1400,
-          "status": "Processing",
-          "createdAt": "2026-09-03T04:39:54.246Z"
-        },
-        {
-          "id": "order-1788494516397",
-          "customer": {
-            "name": "muhammed fayas ",
-            "email": "fayas122@gmail.com"
-          },
-          "address": {
-            "fullName": "muhammed fayas ",
-            "addressLine": "rp house, chelari",
-            "city": "chelari",
-            "state": "kerala",
-            "pincode": "636717"
-          },
-          "items": [
-            {
-              "id": "2",
-              "title": "Rattan Bamboo Vase",
-              "price": 2200,
-              "quantity": 2,
-              "image": "/images/Rattan Bamboo Vase.jpg"
-            }
-          ],
-          "subtotal": 4400,
-          "shipping": 0,
-          "totalAmount": 4400,
-          "status": "Processing",
-          "createdAt": "2026-09-04T04:01:56.391Z"
-        },
-        {
-          "id": "order-1788494549692",
-          "customer": {
-            "name": "muhammed fayas ",
-            "email": "fayas122@gmail.com"
-          },
-          "address": {
-            "fullName": "muhammed fayas ",
-            "addressLine": "rp house, chelari",
-            "city": "chelari",
-            "state": "kerala",
-            "pincode": "636717"
-          },
-          "items": [
-            {
-              "id": "3",
-              "title": "Bamboo Coaster Set",
-              "price": 650,
-              "quantity": 1,
-              "image": "/images/Bamboo Coaster Set.jpg"
-            }
-          ],
-          "subtotal": 650,
-          "shipping": 0,
-          "totalAmount": 650,
-          "status": "Processing",
-          "createdAt": "2026-09-04T04:02:29.687Z"
-        },
-        {
-          "id": "order-1789477409489",
-          "customer": {
-            "name": "muhammed fayas ",
-            "email": "fayas122@gmail.com"
-          },
-          "address": {
-            "fullName": "muhammed fayas ",
-            "addressLine": "rp house, chelari",
-            "city": "chelari",
-            "state": "kerala",
-            "pincode": "636717"
-          },
-          "items": [
-            {
-              "id": "4",
-              "title": "Woven Bamboo Basket",
-              "price": 1400,
-              "quantity": 1,
-              "image": "/images/Bamboo Woven cap.jpg"
-            },
-            {
-              "id": "3",
-              "title": "Bamboo Coaster Set",
-              "price": 650,
-              "quantity": 3,
-              "image": "/images/Bamboo Coaster Set.jpg"
-            },
-            {
-              "id": "7",
-              "title": "Bamboo Bunny Basket",
-              "price": 1250,
-              "quantity": 1,
-              "image": "/images/Bamboo Bunny Basket.jpg"
-            }
-          ],
-          "subtotal": 4600,
-          "shipping": 0,
-          "totalAmount": 4600,
-          "status": "Processing",
-          "createdAt": "2026-09-15T13:03:29.468Z"
-        }
-      ],
-      "id": "eYCz5cqLkqc",
-      "address": {
-        "fullName": "muhammed fayas ",
-        "addressLine": "rp house, chelari",
-        "city": "chelari",
-        "state": "kerala",
-        "pincode": "636717"
-      }
-    },
-    {
-      "name": "muhammed fayas ",
-      "email": "fayas133@gmail.com",
-      "password": "fayaz123",
-      "wishlist": [
-        {
-          "id": "1",
-          "title": "Handcrafted Bamboo Vase",
-          "price": 1800,
-          "category": "Home & Decor",
-          "image": "/images/Handcrafted Bamboo Vase.jpg",
-          "description": "Handcrafted bamboo vase with a natural woven finish.",
-          "stock": 12
-        }
-      ],
-      "cart": [],
-      "orders": [],
-      "id": "qq8SU5teXDE"
-    },
-    {
-      "name": "fayas",
-      "email": "fayas@gmail.com",
-      "password": "fayas123",
+      "role": "user",
       "wishlist": [],
-      "cart": [
-        {
-          "id": "2",
-          "title": "Rattan Bamboo Vase",
-          "price": 2200,
-          "category": "Home & Decor",
-          "image": "/images/Rattan Bamboo Vase.jpg",
-          "description": "Decorative rattan bamboo vase designed for natural home interiors.",
-          "stock": 8,
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "orders": [
         {
-          "id": "order-1789480400688",
+          "id": "order-1790227528278",
           "customer": {
-            "name": "fayas",
-            "email": "fayas@gmail.com"
+            "name": "muhammed fayas ",
+            "email": "fayas122@gmail.com"
           },
           "address": {
             "fullName": "muhammed fayas ",
@@ -514,11 +334,11 @@
           },
           "items": [
             {
-              "id": "1",
-              "title": "Handcrafted Bamboo Vase",
-              "price": 1800,
+              "id": "2",
+              "title": "Rattan Bamboo Vase",
+              "price": 2200,
               "quantity": 1,
-              "image": "/images/Handcrafted Bamboo Vase.jpg"
+              "image": "/images/Rattan Bamboo Vase.jpg"
             },
             {
               "id": "3",
@@ -528,21 +348,52 @@
               "image": "/images/Bamboo Coaster Set.jpg"
             }
           ],
-          "subtotal": 2450,
+          "subtotal": 2850,
           "shipping": 0,
-          "totalAmount": 2450,
-          "status": "Processing",
-          "createdAt": "2026-09-15T13:53:20.658Z"
+          "totalAmount": 2850,
+          "status": "Delivered",
+          "createdAt": "2026-09-24T05:25:28.249Z",
+          "deliveryMessage": "your order is delivered"
+        },
+        {
+          "id": "order-1790227544199",
+          "customer": {
+            "name": "muhammed fayas ",
+            "email": "fayas122@gmail.com"
+          },
+          "address": {
+            "fullName": "muhammed fayas ",
+            "addressLine": "rp house, chelari",
+            "city": "chelari",
+            "state": "kerala",
+            "pincode": "676317"
+          },
+          "items": [
+            {
+              "id": "8",
+              "title": "Bamboo Table Lamp",
+              "price": 2400,
+              "quantity": 1,
+              "image": "/images/bamboo table lamb.jpg"
+            }
+          ],
+          "subtotal": 2400,
+          "shipping": 0,
+          "totalAmount": 2400,
+          "status": "Delivered",
+          "createdAt": "2026-09-24T05:25:44.181Z",
+          "deliveryMessage": ""
         }
       ],
-      "id": "lUJqqOJVwls",
+      "id": "PMamLREc_Oo",
       "address": {
         "fullName": "muhammed fayas ",
         "addressLine": "rp house, chelari",
         "city": "chelari",
         "state": "kerala",
         "pincode": "676317"
-      }
+      },
+      "blocked": false
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -106,7 +106,7 @@ function Home() {
         {/* Features Card */}
         <div
           data-aos="fade-up"
-          className="absolute bottom-0 left-1/2 z-50 w-[86%] max-w-[800px] -translate-x-1/2 translate-y-1/2"
+          className="absolute bottom-0 left-1/2 z-10 w-[86%] max-w-[800px] -translate-x-1/2 translate-y-1/2"
         >
           {" "}
           <div className="grid grid-cols-2 overflow-hidden rounded-[14px] bg-[#f8f5ee]/95 shadow-lg backdrop-blur-md md:grid-cols-4">
